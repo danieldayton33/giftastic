@@ -6,7 +6,7 @@ var gifClicked = false;
 function searchGiphy(topic){
     console.log(topic);
     if(!gifsAdded) {
-    $.get("http://api.giphy.com/v1/gifs/search?q="+ topic +"&api_key=pbf2VZKdnOiI8mIjuXfTHcpSFu1jldMj&limit=15").then(function(result) { 
+    $.get("https://api.giphy.com/v1/gifs/search?api_key=oCBybv6yQ2KLbcNZjx8FbiozWFazPaUG&q="+ topic +"&limit=15").then(function(result) { 
         console.log("success got data", result); 
         $("#gif-area").empty();
         var newGif = $("<img>");
