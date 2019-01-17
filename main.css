@@ -1,0 +1,38 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    color: whitesmoke;
+}
+body {
+    background-image: url(images/trippy\ wp.png);
+}
+#header{
+    font-family: 'Reenie Beanie', cursive;
+    text-align: center;
+    font-size: 70px;
+}
+.container{
+    background: rgba(0,0,0,.25);
+}
+#gif-button {
+    margin: 5px;
+}
+#search-area, #add-search {
+    float: right;
+}
+.gif-div {
+    position: relative;
+    float: left;
+    text-align: center;
+    margin: 5px;
+    width: 280px;
+}
+#gif-area {
+    text-align: center;
+}
+#search-area {
+    color: darkgray;
+}
+.start-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+}
