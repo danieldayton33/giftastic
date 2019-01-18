@@ -16,22 +16,26 @@ body {
 #gif-button {
     margin: 5px;
 }
-#search-area, #add-search {
+#add-search, #search-area {
+    color: black;
     float: right;
+    margin: 5px;
 }
 .gif-div {
     position: relative;
     float: left;
     text-align: center;
     margin: 5px;
-    width: 280px;
+    /* border: 5px solid whitesmoke; */
+}
+p {
+    padding: 0px;
 }
 #gif-area {
     text-align: center;
+    padding: 0px;
 }
-#search-area {
-    color: darkgray;
-}
+
 .start-text {
     font-family: 'Open Sans', sans-serif;
     font-size: 30px;
