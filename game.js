@@ -117,16 +117,16 @@ $("#add-search").click(function(event){
     }
 });
 $(document).on("click", ".gif-image", function(){
-    if(gifClicked){
+    if(!gifClicked){
     var gifFile = $(this).attr("data-gif");
     console.log(gifFile);
     $(this).attr("src", gifFile);
-    gifClicked = false;
+    gifClicked = true;
     }
     else{
     var gifStill = $(this).attr("data-still");
     $(this).attr("src", gifStill);
-    gifClicked = true;
+    gifClicked = false;
     }
 
 
