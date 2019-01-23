@@ -1,14 +1,17 @@
 * {
     font-family: 'Roboto', sans-serif;
-    color: whitesmoke;
+    color: rgb(64,193,150);
+    
 }
 body {
     background-image: url(images/trippy\ wp.png);
+    background-color: lightblue;
 }
 #header{
     font-family: 'Reenie Beanie', cursive;
     text-align: center;
-    font-size: 70px;
+    color: rgb(172,0,82);
+    font-size: 90px;
 }
 .container{
     background: rgba(0,0,0,.25);
@@ -37,6 +40,17 @@ p {
 }
 
 .start-text {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Reenie Beanie', cursive;
     font-size: 30px;
+    color: rgb(138, 0, 85);
+}
+.start-card {
+    margin: 0 auto; /* Added */
+    float: none; /* Added */
+   
+}
+.header {
+    font-family: 'Reenie Beanie', cursive;
+
+    font-size: 50px;
 }
