@@ -1,8 +1,9 @@
 
 var topics = ['freddie mercury','rolling stones', 'the last waltz', 'jim morrison', 'pink floyd', 'john lennon', 'george harrison', 'jimi hendrix', 'led zeppelin', 'lou reed', 'david bowie', 'janis joplin']
+//flag to keep adding more gifs if a second button clicked
 var gifsAdded = false;
-var gifClicked = false;
 // localStorage.clear();
+// array to hold favorited images ID from inital API call, updates from localStorage if anything is there.
 var favList = JSON.parse(localStorage.getItem('favarray')) || [];
 
 
@@ -13,10 +14,9 @@ function searchGiphy(topic){
             .then(function(result) { 
             console.log("success got data", result); 
             $("#gif-area").empty();
-            var newGif = $("<img>");
-  
+  //for loop to create gifs
             for(var i = 0; i < result.data.length; i++) {
-            // var wrapperDiv = $("<div>");
+  //passes only single result to the addGif()
             addGifs(result.data[i]);
             }
             gifsAdded = true;
@@ -30,6 +30,7 @@ function searchGiphy(topic){
     }
 
 function addGifs(response) {
+    
     var newDiv = $("<div>");
     newDiv.addClass("gif-div");
     var newP = $("<p>").text("Rating: "+ response.rating);
@@ -47,13 +48,14 @@ function addGifs(response) {
     var newGif = $("<img>").attr("src", response.images.fixed_height_still.url);
     newGif.attr("data-gif", response.images.fixed_height.url);
     newGif.attr("data-still",  response.images.fixed_height_still.url);
+    newGif.attr("data-animated", "still");
     newGif.addClass("gif-image");
     
     newDiv.append(newGif);
     $("#gif-area").append(newDiv);
     newDiv.append(favDiv);
 }
-    
+// adds buttons on start and also after form submit    
 function addButton(topic){
     var newButton = $('<button>',{
     type: 'button',
@@ -70,15 +72,6 @@ function addButton(topic){
 }
 
 function gameStart (){
-
-//     <div class="card" style="width: 18rem;">
-//   <img src="..." class="card-img-top" alt="...">
-//   <div class="card-body">
-//     <h5 class="card-title">Card title</h5>
-//     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-//     <a href="#" class="btn btn-primary">Go somewhere</a>
-//   </div>
-// </div>
     var startDiv = $("<div>");
     startDiv.addClass("card bg-light start-card")
     startDiv.attr("style","width: 25rem;")
@@ -104,6 +97,8 @@ function gameStart (){
 }
 
 gameStart();
+
+//event handlers
 $("#add-search").click(function(event){
     event.preventDefault();
     if($("#search-area").val().length > 0){
@@ -117,16 +112,16 @@ $("#add-search").click(function(event){
     }
 });
 $(document).on("click", ".gif-image", function(){
-    if(!gifClicked){
-    var gifFile = $(this).attr("data-gif");
-    console.log(gifFile);
-    $(this).attr("src", gifFile);
-    gifClicked = true;
+    if($(this).attr("data-animated") === "still"){
+        var gifFile = $(this).attr("data-gif");
+        console.log(gifFile);
+        $(this).attr("src", gifFile);
+        $(this).attr("data-animated", "animated")
     }
     else{
-    var gifStill = $(this).attr("data-still");
-    $(this).attr("src", gifStill);
-    gifClicked = false;
+        var gifStill = $(this).attr("data-still");
+        $(this).attr("src", gifStill);
+        $(this).attr("data-animated", "still");
     }
 
 
@@ -135,7 +130,7 @@ $(document).on("click", ".gif-image", function(){
 $("#favorites").on("click", function(){
     addFavorites(favList);
 });
-
+//function for second API call to add favorites page
 function addFavorites(array){
     if(!gifsAdded){
         $("#gif-area").empty();
@@ -152,7 +147,7 @@ function addFavorites(array){
         }
     } 
     
-
+//pushes favorite id to array to add to local storage 
 $(document).on("click", ".heart", function(){
     if($(this).attr("data-heart-state") === "empty"){
         console.log("heart clicked")
@@ -163,6 +158,7 @@ $(document).on("click", ".heart", function(){
         localStorage.setItem('favarray', JSON.stringify(favList));
         
     }
+    //removes the favorite id from the local storage if it clicked a second time
     else{
         console.log("heart clicked")
         $(this).html("<i class='far fa-heart'></i>")
